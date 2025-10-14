@@ -1,0 +1,9 @@
+:root { --bg:#ffffff; --fg:#222; --card:#f7f7f7; }
+body { margin:0; font-family:system-ui, "Microsoft YaHei", sans-serif; background:var(--bg); color:var(--fg); }
+.hero { text-align:center; padding:48px 16px; border-bottom:1px solid #eee; }
+.lead { color:#666; margin:6px 0 16px; }
+#toggle { padding:8px 14px; border:1px solid #ddd; border-radius:10px; background:#fff; }
+.cards { max-width:900px; margin:24px auto; padding:0 16px;
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+.card { background:var(--card); border-radius:14px; padding:14px; }
+.dark { --bg:#111; --fg:#f3f3f3; --card:#1e1e1e; }
