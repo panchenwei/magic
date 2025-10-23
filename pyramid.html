@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>乐句树状图 - Mazurka174</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/pyramid.css">
+</head>
+<body>
+  <header class="header">
+    <h1>🌲 乐句层级树状图</h1>
+    <p class="subtitle">展示乐句如何从细粒度逐层合并到整体</p>
+  </header>
+
+  <main class="container">
+    <!-- 控制按钮 -->
+    <div class="top-nav">
+      <button id="backBtn" class="btn btn-secondary">← 返回乐谱</button>
+      <button id="zoomInBtn" class="btn btn-secondary">🔍 放大</button>
+      <button id="zoomOutBtn" class="btn btn-secondary">🔍 缩小</button>
+      <button id="resetBtn" class="btn btn-secondary">🔄 重置缩放</button>
+      <button id="toggleOrientBtn" class="btn btn-secondary">🔄 切换方向</button>
+    </div>
+
+    <!-- 树状图容器 -->
+    <div class="tree-wrapper" id="treeWrapper">
+      <svg id="treeCanvas"></svg>
+    </div>
+  </main>
+
+  <!-- 使用 D3.js 绘制树状图 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="assets/pyramid.js"></script>
+</body>
+</html>

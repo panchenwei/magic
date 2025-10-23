@@ -1,0 +1,149 @@
+/* 树状图页面专用样式 */
+
+.top-nav {
+  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow);
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+/* 树状图容器 */
+.tree-wrapper {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px var(--shadow);
+  padding: 2rem;
+  overflow: auto;
+  min-height: 800px;
+  position: relative;
+}
+
+#treeCanvas {
+  display: block;
+  margin: 0 auto;
+  cursor: grab;
+}
+
+#treeCanvas:active {
+  cursor: grabbing;
+}
+
+/* D3 节点和连接线样式 */
+.node circle {
+  transition: all 0.3s ease;
+}
+
+.node text {
+  pointer-events: none;
+  user-select: none;
+}
+
+.link {
+  transition: stroke-width 0.3s ease;
+}
+
+.link:hover {
+  stroke-width: 3px !important;
+  stroke: #4a90e2 !important;
+  opacity: 1 !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .tree-wrapper {
+    padding: 1rem;
+    min-height: 600px;
+  }
+
+  .top-nav {
+    padding: 1rem;
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .top-nav {
+    display: none;
+  }
+
+  .tree-wrapper {
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  #treeCanvas {
+    page-break-inside: avoid;
+  }
+}
+
+/* 图例（可选） */
+.legend {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+}

@@ -3,18 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>示例：HTML + CSS + JS</title>
-  <link rel="stylesheet" href="assets/styles.css"><!-- 引入CSS -->
+  <title>Mazurka174</title>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <header class="hero">
-    <h1>你好，世界！</h1>
-    <p class="lead">HTML 提供内容骨架</p>
-    <button id="toggle">切换主题</button>
+  <header class="header">
+    <h1>🎼 Mazurka174</h1>
+    <p class="subtitle">MusicXML 五线谱渲染</p>
   </header>
 
-  <main id="list" class="cards"><!-- JS 会把数据插进来 --></main>
+  <main class="container">
+    <!-- 顶部导航按钮 -->
+    <div class="top-nav">
+      <button id="pyramidBtn" class="btn btn-primary">📊 乐句金字塔</button>
+    </div>
 
-  <script src="assets/app.js" defer></script><!-- 引入JS -->
+    <!-- 层级选择按钮 -->
+    <div class="level-controls">
+      <span class="level-label">断句层级:</span>
+      <button id="level1" class="btn level-btn active">Level 1</button>
+      <button id="level2" class="btn level-btn">Level 2</button>
+      <button id="level3" class="btn level-btn">Level 3</button>
+      <button id="level4" class="btn level-btn">Level 4</button>
+    </div>
+
+    <!-- 缩放控制 -->
+    <div class="controls">
+      <button id="zoomIn" class="btn">放大 +</button>
+      <button id="zoomOut" class="btn">缩小 -</button>
+      <button id="resetZoom" class="btn">重置</button>
+      <span class="zoom-info">缩放: <span id="zoomLevel">100</span>%</span>
+    </div>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>正在加载乐谱...</p>
+    </div>
+
+    <div class="sheet-music-container">
+      <div id="sheetMusic"></div>
+    </div>
+
+    <div class="error" id="error" style="display: none;">
+      <p>加载乐谱时出错，请检查文件格式。</p>
+    </div>
+  </main>
+
+  <!-- 使用 OpenSheetMusicDisplay 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.8.7/build/opensheetmusicdisplay.min.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
