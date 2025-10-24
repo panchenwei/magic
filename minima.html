@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>局部最小能量分析</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid #667eea;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .formula {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      color: #555;
+      margin: 20px 0;
+      border-left: 5px solid #667eea;
+    }
+
+    .formula-label {
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .nav-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-link:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .charts-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .chart-container {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      height: 400px;
+    }
+
+    .chart-container:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .chart-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .chart-canvas {
+      width: 100%;
+      height: calc(100% - 50px);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px;
+      font-size: 1.3em;
+      color: #667eea;
+    }
+
+    .error {
+      background: #fee;
+      border: 2px solid #f66;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      color: #c00;
+    }
+
+    @media (max-width: 768px) {
+      .chart-container {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎵 局部最小能量分析</h1>
+      <div class="formula">
+        <div class="formula-label">能量公式：</div>
+        <div>eng = sqrt(nanmean(t_eng.^2, 1))</div>
+        <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+          均方根能量（Root Mean Square Energy）
+        </div>
+      </div>
+      <a href="index.html" class="nav-link">← 返回主页面</a>
+    </header>
+
+    <div id="loading" class="loading">
+      ⏳ 加载中...
+    </div>
+
+    <div id="error" style="display: none;" class="error"></div>
+
+    <div id="chartsContainer" class="charts-grid" style="display: none;">
+      <div class="chart-container">
+        <div class="chart-title">Level 1 局部最小能量</div>
+        <div style="height: calc(100% - 40px);">
+          <canvas id="chartLevel1"></canvas>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Level 2 局部最小能量</div>
+        <div style="height: calc(100% - 40px);">
+          <canvas id="chartLevel2"></canvas>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Level 3 局部最小能量</div>
+        <div style="height: calc(100% - 40px);">
+          <canvas id="chartLevel3"></canvas>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Level 4 局部最小能量</div>
+        <div style="height: calc(100% - 40px);">
+          <canvas id="chartLevel4"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart.js 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="assets/minima.js"></script>
+</body>
+</html>
+
